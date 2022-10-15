@@ -19,8 +19,9 @@ public class ManageFacilityTest {
 
     @Test
     public void doctorIsFired() throws Exception {
+        manageFacility.hireDoctor("Andy", Doctors.CARDIOLOGIST);
         int currentSize = manageFacility.getDoctors().size();
-        manageFacility.fireDoctor("Andy", "some id");
+        manageFacility.fireDoctor("1");
         assertEquals(currentSize - 1, manageFacility.getDoctors().size());
     }
 }

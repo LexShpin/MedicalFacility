@@ -44,8 +44,9 @@ public class ManageFacility {
 
     }
 
-    public void fireDoctor(Doctor doctor) {
-
+    public void fireDoctor(String ID) {
+        int index = Integer.parseInt(ID) - 1;
+        this.doctors.remove(index);
     }
 
     public Doctor getDoctor(Doctor doctor) {
@@ -54,5 +55,6 @@ public class ManageFacility {
 
     public ArrayList<Doctor> getDoctors() {
         return this.doctors;
+        // then call it in ui and map there
     }
 }
