@@ -11,27 +11,32 @@ public class ManageFacility {
     private ArrayList<Doctor> doctors;
     private ArrayList<Patient> patients;
     private ArrayList<Appointment> appointments;
+    private Integer id;
 
     public ManageFacility() {
         this.doctors = new ArrayList<>();
         this.patients = new ArrayList<>();
         this.appointments = new ArrayList<>();
+        this.id = 0;
     }
 
     public void hireDoctor(String name, Doctors specialty) throws Exception {
         Doctor doctor;
-        String ID = UUID.randomUUID().toString();
+        String ID = this.id.toString();
 
         try {
             if (specialty.equals(Doctors.GASTROENTEROLOGIST)) {
                 doctor = new Gastroenterologist(ID, name, specialty.toString());
                 this.doctors.add(doctor);
+                this.id++;
             } else if (specialty.equals(Doctors.THERAPIST)) {
                 doctor = new Therapist(ID, name, specialty.toString());
                 this.doctors.add(doctor);
+                this.id++;
             } else if (specialty.equals(Doctors.CARDIOLOGIST)) {
                 doctor = new Cardiologist(ID, name, specialty.toString());
                 this.doctors.add(doctor);
+                this.id++;
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -39,8 +44,12 @@ public class ManageFacility {
 
     }
 
-    public void fireDoctor(String name, String ID) {
+    public void fireDoctor(Doctor doctor) {
 
+    }
+
+    public Doctor getDoctor(Doctor doctor) {
+        return new Cardiologist(this.id.toString(), "Andy", Doctors.CARDIOLOGIST.toString());
     }
 
     public ArrayList<Doctor> getDoctors() {

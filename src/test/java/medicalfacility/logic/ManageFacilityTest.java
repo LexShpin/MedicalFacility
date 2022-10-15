@@ -5,8 +5,6 @@ import medicalfacility.domain.doctor.Doctor;
 import medicalfacility.domain.doctor.Doctors;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ManageFacilityTest {
