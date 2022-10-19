@@ -5,12 +5,13 @@ import medicalfacility.domain.doctor.*;
 import medicalfacility.domain.patient.Patient;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ManageFacility {
-    private ArrayList<Doctor> doctors;
-    private ArrayList<Patient> patients;
-    private ArrayList<Appointment> appointments;
+    private List<Doctor> doctors;
+    private List<Patient> patients;
+    private List<Appointment> appointments;
     private Integer id;
 
     public ManageFacility() {
@@ -49,12 +50,15 @@ public class ManageFacility {
         this.doctors.remove(index);
     }
 
-    public Doctor getDoctor(Doctor doctor) {
-        return new Cardiologist(this.id.toString(), "Andy", Doctors.CARDIOLOGIST.toString());
+    public List<Doctor> getDoctors() {
+        return this.doctors;
     }
 
-    public ArrayList<Doctor> getDoctors() {
-        return this.doctors;
-        // then call it in ui and map there
+    public List<Patient> getPatients() {
+        return this.patients;
+    }
+
+    public List<Appointment> getAppointments() {
+        return this.appointments;
     }
 }
