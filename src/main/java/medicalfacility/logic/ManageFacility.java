@@ -5,19 +5,16 @@ import medicalfacility.domain.doctor.*;
 import medicalfacility.domain.patient.Patient;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 public class ManageFacility {
     private List<Doctor> doctors;
-    private List<Patient> patients;
-    private List<Appointment> appointments;
     private Integer id;
 
     public ManageFacility() {
         this.doctors = new ArrayList<>();
-        this.patients = new ArrayList<>();
-        this.appointments = new ArrayList<>();
         this.id = 0;
     }
 
@@ -54,11 +51,5 @@ public class ManageFacility {
         return this.doctors;
     }
 
-    public List<Patient> getPatients() {
-        return this.patients;
-    }
 
-    public List<Appointment> getAppointments() {
-        return this.appointments;
-    }
 }
