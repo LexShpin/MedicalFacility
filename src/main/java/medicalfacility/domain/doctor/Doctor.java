@@ -15,7 +15,7 @@ public abstract class Doctor {
         return "Our " + this.specialty + " " + this.name + " confirmed the appointment";
     }
 
-    private String getID() {
+    public String getID() {
         return this.ID;
     }
 

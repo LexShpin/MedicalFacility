@@ -1,13 +1,9 @@
 package medicalfacility.logic;
 
-import medicalfacility.domain.appointment.Appointment;
 import medicalfacility.domain.doctor.*;
-import medicalfacility.domain.patient.Patient;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class ManageFacility {
     private List<Doctor> doctors;
@@ -15,7 +11,9 @@ public class ManageFacility {
 
     public ManageFacility() {
         this.doctors = new ArrayList<>();
-        this.id = 0;
+        this.doctors.add(new Cardiologist("1", "Alex", Doctors.CARDIOLOGIST.toString()));
+        this.doctors.add(new Therapist("2", "Andrew", Doctors.THERAPIST.toString()));
+        this.id = 1;
     }
 
     public void hireDoctor(String name, Doctors specialty) throws Exception {
@@ -43,8 +41,13 @@ public class ManageFacility {
     }
 
     public void fireDoctor(String ID) {
-        int index = Integer.parseInt(ID) - 1;
-        this.doctors.remove(index);
+        try {
+            int index = Integer.valueOf(ID) - 1;
+            this.doctors.remove(index);
+        } catch (Exception e) {
+            System.out.println("Something went wrong " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public List<Doctor> getDoctors() {

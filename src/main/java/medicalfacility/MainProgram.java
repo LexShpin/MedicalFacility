@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import medicalfacility.logic.ManageFacility;
 import medicalfacility.ui.managefacility.manageappointments.ManageAppointmentsView;
 import medicalfacility.ui.managefacility.managefacility.ManageFacilityView;
 
@@ -19,7 +20,8 @@ public class MainProgram extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        ManageFacilityView manageFacilityView = new ManageFacilityView();
+        ManageFacility manageFacility = new ManageFacility();
+        ManageFacilityView manageFacilityView = new ManageFacilityView(manageFacility);
         ManageAppointmentsView manageAppointmentsView = new ManageAppointmentsView();
 
         BorderPane layout = new BorderPane();
