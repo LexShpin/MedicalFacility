@@ -8,8 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import medicalfacility.ui.managefacility.ManageAppointmentsView;
-import medicalfacility.ui.managefacility.ManageFacilityView;
+import medicalfacility.ui.managefacility.manageappointments.ManageAppointmentsView;
+import medicalfacility.ui.managefacility.managefacility.ManageFacilityView;
 
 public class MainProgram extends Application {
 
@@ -22,29 +22,33 @@ public class MainProgram extends Application {
         ManageFacilityView manageFacilityView = new ManageFacilityView();
         ManageAppointmentsView manageAppointmentsView = new ManageAppointmentsView();
 
-        GridPane layout = new GridPane();
+        BorderPane layout = new BorderPane();
+
+        GridPane gridPane = new GridPane();
 
         Button manageFacilityBtn = new Button("Manage Facility");
         Button manageAppointmentsBtn = new Button("Manage Appointments");
 
-        manageFacilityBtn.setOnAction(event -> manageFacilityView.getView());
-        manageAppointmentsBtn.setOnAction(event -> manageAppointmentsView.getView());
+        manageFacilityBtn.setOnAction(event -> layout.setCenter(manageFacilityView.getView()));
+        manageAppointmentsBtn.setOnAction(event -> layout.setCenter(manageAppointmentsView.getView()));
 
-        layout.add(manageFacilityBtn, 0, 1);
-        layout.add(manageAppointmentsBtn, 1, 1);
+        gridPane.add(manageFacilityBtn, 0, 1);
+        gridPane.add(manageAppointmentsBtn, 1, 1);
 
-        layout.setPrefSize(600, 600);
-        layout.setAlignment(Pos.CENTER);
-        layout.setVgap(10);
-        layout.setHgap(10);
-        layout.setPadding(new Insets(20, 20, 20, 20));
+        gridPane.setPrefSize(600, 600);
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setVgap(10);
+        gridPane.setHgap(10);
+        gridPane.setPadding(new Insets(20, 20, 20, 20));
 
         BackgroundImage mainBG = new BackgroundImage(new Image("https://d3cl79h6n1fe0x.cloudfront" +
                 ".net/wp-content/uploads/2018/07/20120229/large-3.jpg", 600, 600, false, true),
                 BackgroundRepeat.NO_REPEAT
                 , BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
-        layout.setBackground(new Background(mainBG));
+        gridPane.setBackground(new Background(mainBG));
+
+        layout.setCenter(gridPane);
 
         Scene scene = new Scene(layout);
 
