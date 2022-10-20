@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import medicalfacility.ui.managefacility.ManageAppointmentsView;
+import medicalfacility.ui.managefacility.ManageFacilityView;
 
 public class MainProgram extends Application {
 
@@ -17,10 +19,16 @@ public class MainProgram extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        ManageFacilityView manageFacilityView = new ManageFacilityView();
+        ManageAppointmentsView manageAppointmentsView = new ManageAppointmentsView();
+
         GridPane layout = new GridPane();
 
         Button manageFacilityBtn = new Button("Manage Facility");
         Button manageAppointmentsBtn = new Button("Manage Appointments");
+
+        manageFacilityBtn.setOnAction(event -> manageFacilityView.getView());
+        manageAppointmentsBtn.setOnAction(event -> manageAppointmentsView.getView());
 
         layout.add(manageFacilityBtn, 0, 1);
         layout.add(manageAppointmentsBtn, 1, 1);
