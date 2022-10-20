@@ -3,33 +3,36 @@ package medicalfacility.ui.managefacility.managefacility;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import medicalfacility.domain.doctor.Doctor;
 import medicalfacility.logic.ManageFacility;
-
-import java.util.List;
 
 public class ManageFacilityView {
 
     private ObservableList<Doctor> doctors;
     private ManageFacility manageFacility;
+    private HireDoctor hireDoctor;
     private TableColumn<Doctor, String> idColumn;
     private TableView doctorsTable;
 
     public ManageFacilityView(ManageFacility manageFacility) {
         this.manageFacility = new ManageFacility();
+        this.hireDoctor = new HireDoctor();
     }
 
     public Parent getView() {
         BorderPane layout = new BorderPane();
 
         this.doctorsTable = new TableView<>();
-        Button addDoctor = new Button("Add doctor");
+        Button addDoctor = new Button("Hire a doctor");
+
+        addDoctor.setOnAction(event -> {
+            layout.setCenter(hireDoctor.getView());
+            layout.setBottom(null);
+        });
 
         idColumn = new TableColumn<>("ID");
         TableColumn<Doctor, String> nameColumn = new TableColumn<>("Name");
