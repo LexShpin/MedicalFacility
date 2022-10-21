@@ -13,15 +13,19 @@ public class ManageAppointments {
     private List<Appointment> appointments;
     private List<Patient> patients;
 
+    private Integer id;
+
     public ManageAppointments() {
         this.appointments = new ArrayList<>();
         this.patients = new ArrayList<>();
+        this.id = 1;
     }
 
-    private void setAppointment(Patient patient, Doctor doctor, Date date) {
-        String ID = UUID.randomUUID().toString();
+    public void setAppointment(Patient patient, Doctor doctor, Date date) {
+        String ID = this.id.toString();
         Appointment appointment = new Appointment(ID, patient, doctor, date);
         this.appointments.add(appointment);
+        this.id++;
     }
 
     private void editAppointment(String ID, Doctor doctor, Date date) {
