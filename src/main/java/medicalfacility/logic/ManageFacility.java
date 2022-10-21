@@ -40,6 +40,11 @@ public class ManageFacility {
         try {
             int index = Integer.valueOf(ID) - 1;
             this.doctors.remove(index);
+            if (this.id - 1 == 0) {
+                this.id = 1;
+            } else {
+                this.id--;
+            }
         } catch (Exception e) {
             System.out.println("Something went wrong " + e.getMessage());
             e.printStackTrace();

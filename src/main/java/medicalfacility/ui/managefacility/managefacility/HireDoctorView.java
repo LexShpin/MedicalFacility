@@ -18,7 +18,7 @@ import medicalfacility.logic.ManageFacility;
 
 public class HireDoctorView {
 
-    private ManageFacility manageFacility;
+    private static ManageFacility manageFacility;
     private ManageFacilityView manageFacilityView;
     private BorderPane layout;
 
