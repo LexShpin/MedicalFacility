@@ -21,7 +21,7 @@ public class MainProgram extends Application {
     @Override
     public void start(Stage primaryStage) {
         ManageFacility manageFacility = new ManageFacility();
-        ManageFacilityView manageFacilityView = new ManageFacilityView(manageFacility);
+        ManageFacilityView manageFacilityView = new ManageFacilityView();
         ManageAppointmentsView manageAppointmentsView = new ManageAppointmentsView();
 
         BorderPane layout = new BorderPane();

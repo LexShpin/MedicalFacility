@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageFacility {
-    private List<Doctor> doctors;
+    private static List<Doctor> doctors;
     private Integer id;
 
     public ManageFacility() {
@@ -16,26 +16,22 @@ public class ManageFacility {
         this.id = 1;
     }
 
-    public void hireDoctor(String name, Doctors specialty) throws Exception {
+    public void hireDoctor(String name, Doctors specialty) {
         Doctor doctor;
         String ID = this.id.toString();
 
-        try {
-            if (specialty.equals(Doctors.GASTROENTEROLOGIST)) {
-                doctor = new Gastroenterologist(ID, name, specialty.toString());
-                this.doctors.add(doctor);
-                this.id++;
-            } else if (specialty.equals(Doctors.THERAPIST)) {
-                doctor = new Therapist(ID, name, specialty.toString());
-                this.doctors.add(doctor);
-                this.id++;
-            } else if (specialty.equals(Doctors.CARDIOLOGIST)) {
-                doctor = new Cardiologist(ID, name, specialty.toString());
-                this.doctors.add(doctor);
-                this.id++;
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        if (specialty.equals(Doctors.GASTROENTEROLOGIST)) {
+            doctor = new Gastroenterologist(ID, name, specialty.toString());
+            this.doctors.add(doctor);
+            this.id++;
+        } else if (specialty.equals(Doctors.THERAPIST)) {
+            doctor = new Therapist(ID, name, specialty.toString());
+            this.doctors.add(doctor);
+            this.id++;
+        } else if (specialty.equals(Doctors.CARDIOLOGIST)) {
+            doctor = new Cardiologist(ID, name, specialty.toString());
+            this.doctors.add(doctor);
+            this.id++;
         }
 
     }

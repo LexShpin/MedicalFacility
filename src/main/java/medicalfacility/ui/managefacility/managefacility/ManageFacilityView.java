@@ -13,24 +13,21 @@ import medicalfacility.logic.ManageFacility;
 public class ManageFacilityView {
 
     private ObservableList<Doctor> doctors;
-    private ManageFacility manageFacility;
-    private HireDoctor hireDoctor;
+    private ManageFacility manageFacility = new ManageFacility();
+    private HireDoctorView hireDoctorView;
     private TableColumn<Doctor, String> idColumn;
     private TableView doctorsTable;
 
-    public ManageFacilityView(ManageFacility manageFacility) {
-        this.manageFacility = new ManageFacility();
-        this.hireDoctor = new HireDoctor();
-    }
-
     public Parent getView() {
+        hireDoctorView = new HireDoctorView(manageFacility);
+
         BorderPane layout = new BorderPane();
 
         this.doctorsTable = new TableView<>();
         Button addDoctor = new Button("Hire a doctor");
 
         addDoctor.setOnAction(event -> {
-            layout.setCenter(hireDoctor.getView());
+            layout.setCenter(hireDoctorView.getView());
             layout.setBottom(null);
         });
 
@@ -40,13 +37,11 @@ public class ManageFacilityView {
 
         doctorsTable.getColumns().addAll(idColumn, nameColumn, specialtyColumn);
 
-        this.doctors = FXCollections.observableArrayList(manageFacility.getDoctors());
-
         idColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         specialtyColumn.setCellValueFactory(new PropertyValueFactory<>("specialty"));
 
-        doctorsTable.setItems(this.doctors);
+        setupTable();
 
         addButtonsToTable();
 
@@ -90,5 +85,11 @@ public class ManageFacilityView {
         actionColumn.setCellFactory(cellFactory);
 
         doctorsTable.getColumns().add(actionColumn);
+    }
+
+    protected void setupTable() {
+        this.doctors = FXCollections.observableArrayList(manageFacility.getDoctors());
+        System.out.println(this.doctors.toString());
+        doctorsTable.setItems(this.doctors);
     }
 }
