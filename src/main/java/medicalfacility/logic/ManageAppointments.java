@@ -28,23 +28,23 @@ public class ManageAppointments {
         this.id++;
     }
 
-    private void editAppointment(String ID, Doctor doctor, Date date) {
+    public void editAppointment(String ID, Doctor doctor, Date date) {
         int index = Integer.parseInt(ID) - 1;
         this.appointments.get(index).setDoctor(doctor);
         this.appointments.get(index).setDate(date);
     }
 
-    private void editAppointment(String ID, Doctor doctor) {
+    public void editAppointment(String ID, Doctor doctor) {
         int index = Integer.parseInt(ID) - 1;
         this.appointments.get(index).setDoctor(doctor);
     }
 
-    private void editAppointment(String ID, Date date) {
+    public void editAppointment(String ID, Date date) {
         int index = Integer.parseInt(ID) - 1;
         this.appointments.get(index).setDate(date);
     }
 
-    private void cancelAppointment(String ID) {
+    public void cancelAppointment(String ID) {
         int index = Integer.parseInt(ID) - 1;
         this.appointments.remove(index);
     }
