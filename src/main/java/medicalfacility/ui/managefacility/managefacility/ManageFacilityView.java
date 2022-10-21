@@ -49,8 +49,6 @@ public class ManageFacilityView {
         layout.setCenter(doctorsTable);
         layout.setBottom(addDoctor);
 
-        System.out.println(this.doctors);
-
         return layout;
     }
 
@@ -92,7 +90,6 @@ public class ManageFacilityView {
 
     protected void setupTable() {
         this.doctors = FXCollections.observableArrayList(manageFacility.getDoctors());
-        System.out.println(manageFacility.getDoctors());
         doctorsTable.setItems(this.doctors);
     }
 }

@@ -18,18 +18,20 @@ class ManageAppointmentsTest {
     public void appointmentSet() {
         int currentSize = manageAppointments.getAppointments().size();
         Patient patient = new Patient("1", "Andrew");
+        String complaint = "something is bothering";
         Doctor doctor = new Gastroenterologist("1", "Alan", Doctors.CARDIOLOGIST.toString());
         Date date = Date.from(Instant.now());
-        manageAppointments.setAppointment(patient, doctor, date);
+        manageAppointments.setAppointment(patient, complaint, doctor, date);
         assertEquals(currentSize + 1, manageAppointments.getAppointments().size());
     }
 
     @Test
     public void appointmentEdited() {
         Patient patient = new Patient("1", "Andrew");
+        String complaint = "something is bothering";
         Doctor doctor = new Gastroenterologist("1", "Alan", Doctors.CARDIOLOGIST.toString());
         Date date = Date.from(Instant.now());
-        manageAppointments.setAppointment(patient, doctor, date);
+        manageAppointments.setAppointment(patient, complaint, doctor, date);
         Appointment currentAppointment = manageAppointments.getAppointments().get(0);
         Doctor newDoctor = new Cardiologist("2", "John", Doctors.CARDIOLOGIST.toString());
         manageAppointments.editAppointment("1", newDoctor);
@@ -39,9 +41,10 @@ class ManageAppointmentsTest {
     @Test
     public void appointmentCanceled() {
         Patient patient = new Patient("1", "Andrew");
+        String complaint = "something is bothering";
         Doctor doctor = new Gastroenterologist("1", "Alan", Doctors.CARDIOLOGIST.toString());
         Date date = Date.from(Instant.now());
-        manageAppointments.setAppointment(patient, doctor, date);
+        manageAppointments.setAppointment(patient, complaint, doctor, date);
         int currentSize = manageAppointments.getAppointments().size();
         manageAppointments.cancelAppointment("1");
         assertEquals(currentSize - 1, manageAppointments.getAppointments().size());
