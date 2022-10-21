@@ -9,9 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import medicalfacility.domain.doctor.Doctors;
 import medicalfacility.logic.ManageFacility;
@@ -37,6 +36,13 @@ public class HireDoctorView {
         layout = new BorderPane();
 
         GridPane grid = new GridPane();
+
+        BackgroundImage mainBG = new BackgroundImage(new Image("https://d3cl79h6n1fe0x.cloudfront" +
+                ".net/wp-content/uploads/2018/07/20120229/large-3.jpg", 600, 600, false, true),
+                BackgroundRepeat.NO_REPEAT
+                , BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+        layout.setBackground(new Background(mainBG));
 
         Label heading = new Label("Enter new employee info");
         Label nameLabel = new Label("Name");
@@ -108,5 +114,6 @@ public class HireDoctorView {
         layout.setTop(null);
         layout.setCenter(manageFacilityView.getView());
         layout.setPadding(new Insets(0));
+        layout.setBackground(null);
     }
 }
