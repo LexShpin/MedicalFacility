@@ -4,17 +4,8 @@ public class Patient {
     private String ID;
     private String name;
 
-    public Patient(String ID, String name) {
-        this.ID = ID;
+    public Patient(String name) {
         this.name = name;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String getName() {

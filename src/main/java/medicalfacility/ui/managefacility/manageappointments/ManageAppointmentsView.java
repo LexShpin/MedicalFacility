@@ -6,12 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import medicalfacility.domain.appointment.Appointment;
 import medicalfacility.domain.doctor.Doctor;
 import medicalfacility.domain.patient.Patient;
 import medicalfacility.logic.ManageAppointments;
+import medicalfacility.logic.ManageFacility;
 
 import java.util.Date;
 
@@ -19,12 +19,13 @@ public class ManageAppointmentsView {
 
     private ObservableList<Appointment> appointments;
     private static ManageAppointments manageAppointments = new ManageAppointments();
+    private static ManageFacility manageFacility = new ManageFacility();
     private TableColumn<Appointment, String> idColumn;
     private TableView appointmentsTable;
     private AddAppointmentView addAppointmentView;
 
     public Parent getView() {
-        addAppointmentView = new AddAppointmentView(manageAppointments);
+        addAppointmentView = new AddAppointmentView(manageAppointments, manageFacility);
 
         BorderPane layout = new BorderPane();
 
@@ -57,6 +58,7 @@ public class ManageAppointmentsView {
         addButtonsToTable();
 
         layout.setCenter(appointmentsTable);
+        layout.setBottom(addAppointment);
 
         return layout;
     }

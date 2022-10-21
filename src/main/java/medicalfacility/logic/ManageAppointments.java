@@ -23,13 +23,13 @@ public class ManageAppointments {
         this.patients = new ArrayList<>();
         this.id = 1;
 
-        Patient patient = new Patient("1", "Andrew");
+        Patient patient = new Patient("Andrew");
         String complaint = "something is bothering";
         Doctor doctor = new Gastroenterologist("1", "Alan", Doctors.CARDIOLOGIST.toString());
         Date date = Date.from(Instant.now());
         this.setAppointment(patient, complaint, doctor, date);
 
-        Patient patient1 = new Patient("2", "John");
+        Patient patient1 = new Patient("John");
         String complaint1 = "idk just hurts";
         Doctor doctor1 = new Gastroenterologist("2", "Peter", Doctors.CARDIOLOGIST.toString());
         Date date1 = Date.from(Instant.now());
