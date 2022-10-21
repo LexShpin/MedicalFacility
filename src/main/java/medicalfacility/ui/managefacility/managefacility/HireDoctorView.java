@@ -32,6 +32,7 @@ public class HireDoctorView {
     );
 
     public Parent getView() {
+        System.out.println(manageFacility.getDoctors());
         manageFacilityView = new ManageFacilityView();
         layout = new BorderPane();
 

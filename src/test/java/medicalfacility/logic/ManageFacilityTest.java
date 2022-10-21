@@ -11,10 +11,19 @@ public class ManageFacilityTest {
     ManageFacility manageFacility = new ManageFacility();
 
     @Test
-    public void doctorIsHired() throws Exception {
+    public void oneDoctorIsHired() throws Exception {
         int currentSize = manageFacility.getDoctors().size();
         manageFacility.hireDoctor("Andy", Doctors.CARDIOLOGIST);
         assertEquals(currentSize + 1, manageFacility.getDoctors().size());
+    }
+
+    @Test
+    public void severalDoctorsAreHired() throws Exception {
+        int currentSize = manageFacility.getDoctors().size();
+        manageFacility.hireDoctor("Andy", Doctors.CARDIOLOGIST);
+        manageFacility.hireDoctor("Johny", Doctors.THERAPIST);
+        manageFacility.hireDoctor("Pete", Doctors.GASTROENTEROLOGIST);
+        assertEquals(currentSize + 3, manageFacility.getDoctors().size());
     }
 
     @Test
