@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import medicalfacility.domain.doctor.Doctor;
+import medicalfacility.domain.patient.Patient;
 import medicalfacility.logic.ManageAppointments;
 import medicalfacility.logic.ManageFacility;
 
@@ -39,14 +41,31 @@ public class AddAppointmentView {
         // patient, complaint, doctor, date
         Label yourName = new Label("Your name");
         TextField patientName = new TextField();
+        Label yourComplaint = new Label("What bothers you?");
         TextArea complaint = new TextArea();
+        Label pickDoctor = new Label("Choose a doctor:");
         ComboBox doctors = new ComboBox<>(FXCollections.observableArrayList(manageFacility.getDoctors()));
         Label pickDate = new Label("Pick a date");
         DatePicker datePicker = new DatePicker();
+        Button setAppointment = new Button("Schedule");
+
+        setAppointment.setOnAction(event -> {
+            Patient patient = new Patient(patientName.getText());
+            Doctor doctor;
+        });
+
+        complaint.setPrefSize(200, 50);
+        doctors.getSelectionModel().selectFirst();
 
         grid.add(yourName, 0, 0);
         grid.add(patientName, 0, 1);
-        grid.add(complaint, 1, 0);
+        grid.add(yourComplaint, 0, 2);
+        grid.add(complaint, 0, 3);
+        grid.add(pickDoctor, 0, 4);
+        grid.add(doctors, 0, 5);
+        grid.add(pickDate, 0, 6);
+        grid.add(datePicker, 0, 7);
+        grid.add(setAppointment, 0, 8);
 
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setAlignment(Pos.CENTER);
