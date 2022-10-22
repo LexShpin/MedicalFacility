@@ -7,9 +7,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import medicalfacility.domain.doctor.Doctor;
 import medicalfacility.logic.ManageFacility;
+import medicalfacility.ui.managefacility.MainView;
 
 public class ManageFacilityView {
 
@@ -18,14 +20,22 @@ public class ManageFacilityView {
     private HireDoctorView hireDoctorView;
     private TableColumn<Doctor, String> idColumn;
     private TableView doctorsTable;
+    private BorderPane layout;
+    private MainView mainView;
 
     public Parent getView() {
         hireDoctorView = new HireDoctorView(manageFacility);
+        mainView = new MainView();
 
-        BorderPane layout = new BorderPane();
+        layout = new BorderPane();
 
         this.doctorsTable = new TableView<>();
+        Button backBtn = new Button("Back");
         Button addDoctor = new Button("Hire a doctor");
+
+        HBox bottom = new HBox(backBtn, addDoctor);
+
+        backBtn.setOnAction(event -> backToMainView());
 
         addDoctor.setOnAction(event -> {
             layout.setCenter(hireDoctorView.getView());
@@ -47,7 +57,7 @@ public class ManageFacilityView {
         addButtonsToTable();
 
         layout.setCenter(doctorsTable);
-        layout.setBottom(addDoctor);
+        layout.setBottom(bottom);
 
         return layout;
     }
@@ -91,5 +101,10 @@ public class ManageFacilityView {
     protected void setupTable() {
         this.doctors = FXCollections.observableArrayList(manageFacility.getDoctors());
         doctorsTable.setItems(this.doctors);
+    }
+
+    private void backToMainView() {
+        layout.setCenter(mainView.getView());
+        layout.setBottom(null);
     }
 }

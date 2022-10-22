@@ -6,12 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+import medicalfacility.MainProgram;
 import medicalfacility.domain.appointment.Appointment;
 import medicalfacility.domain.doctor.Doctor;
 import medicalfacility.domain.patient.Patient;
 import medicalfacility.logic.ManageAppointments;
 import medicalfacility.logic.ManageFacility;
+import medicalfacility.ui.managefacility.MainView;
 
 import java.util.Date;
 
@@ -22,20 +25,28 @@ public class ManageAppointmentsView {
     private static ManageFacility manageFacility = new ManageFacility();
     private TableColumn<Appointment, String> idColumn;
     private TableView appointmentsTable;
+    private BorderPane layout;
     private AddAppointmentView addAppointmentView;
+    private MainView mainView;
 
     public Parent getView() {
         addAppointmentView = new AddAppointmentView(manageAppointments, manageFacility);
+        mainView = new MainView();
 
-        BorderPane layout = new BorderPane();
+        layout = new BorderPane();
 
         this.appointmentsTable = new TableView<>();
         Button addAppointment = new Button("Add appointment");
+        Button backBtn = new Button("Back");
+
+        HBox bottom = new HBox(backBtn, addAppointment);
 
         addAppointment.setOnAction(event -> {
             layout.setCenter(addAppointmentView.getView());
             layout.setBottom(null);
         });
+
+        backBtn.setOnAction(event -> backToMainView());
 
         idColumn = new TableColumn<>("ID");
         TableColumn<Appointment, Patient> patientNameColumn = new TableColumn<>("Patient");
@@ -58,7 +69,7 @@ public class ManageAppointmentsView {
         addButtonsToTable();
 
         layout.setCenter(appointmentsTable);
-        layout.setBottom(addAppointment);
+        layout.setBottom(bottom);
 
         return layout;
     }
@@ -99,8 +110,13 @@ public class ManageAppointmentsView {
         appointmentsTable.getColumns().add(actionColumn);
     }
 
-    public void setupTable() {
+    private void setupTable() {
         this.appointments = FXCollections.observableArrayList(manageAppointments.getAppointments());
         appointmentsTable.setItems(appointments);
+    }
+
+    private void backToMainView() {
+        layout.setCenter(mainView.getView());
+        layout.setBottom(null);
     }
 }
